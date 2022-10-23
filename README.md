@@ -1,12 +1,18 @@
 <p>
-NestJS App - Skeleton
-Technologies used:
+  NestJS App - Skeleton
+</p>
+## Running the app
+
+## Technologies used:
+
+```bash
 * Prisma (ORM)
 * Passport / Passport-JWT
 * PostgreSQL
 * Argon2 / class-validator / class-transformer for manipulating /validating data
 * Pactum and Jest for e2e testing
-</p>
+```
+
 <p align="center">
   <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
 </p>
