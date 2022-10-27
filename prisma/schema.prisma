@@ -10,6 +10,24 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+enum UserRole {
+  USER
+  ADMIN
+}
+
+model Company {
+  id Int @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  companyName String
+
+  users User[]
+  events Event[]
+
+  @@map("companies")
+}
+
 model User {
   id Int @id @default(autoincrement())
   createdAt DateTime @default(now())
@@ -20,21 +38,35 @@ model User {
   firstName String?
   lastName String?
 
-  bookmarks Bookmark[]
+  events Event[]
+
+  userRole UserRole @default(USER)
+
+  companyId Int
+  company Company @relation(fields: [companyId], references: [id], onDelete: Cascade)
 
   @@map("users")
 }
-model Bookmark {
+
+model Event {
+
   id Int @id @default(autoincrement())
+
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+  dateHeldAt DateTime @default(now())
 
   title String
   description String?
-  link String
+
+  numberOfGuests Int @default(0)
+  numberOfConfirmedGuests Int @default(0)
 
   userId Int
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
-  @@map("bookmarks")
+  companyId Int
+  company Company @relation(fields: [companyId], references: [id], onDelete: Cascade)
+
+  @@map("events")
 }

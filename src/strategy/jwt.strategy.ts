@@ -22,11 +22,6 @@ export class JWTStrategy extends PassportStrategy(Strategy) {
     iat: number;
     exp: number;
   }) {
-    console.log({
-      payload,
-    });
-
-    //TODO FIND USER IN DB, AND ONLY THEN RETURN THE PAYLOAD
     const user = await this.prismaService.user.findUnique({
       where: { id: payload.sub },
     });
