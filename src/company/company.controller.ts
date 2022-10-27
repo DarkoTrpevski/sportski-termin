@@ -14,7 +14,7 @@ import { CompanyService } from './company.service';
 import { CreateCompanyDto } from './dto/create-company.dto';
 import { EditCompanyDto } from './dto/edit-company.dto';
 
-@Controller('company')
+@Controller('companies')
 export class CompanyController {
   constructor(private readonly companyService: CompanyService) {}
 

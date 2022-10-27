@@ -1,5 +1,5 @@
 import {
-  IsDate,
+  IsISO8601,
   IsNotEmpty,
   IsNumber,
   IsOptional,
@@ -28,6 +28,6 @@ export class CreateEventDto {
   numberOfConfirmedGuests: number;
 
   @IsNotEmpty()
-  @IsDate()
+  @IsISO8601()
   dateHeldAt: Date;
 }

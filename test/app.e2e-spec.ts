@@ -7,7 +7,7 @@ import { BookmarkModule } from '../src/bookmark/bookmark.module';
 import { PrismaModule } from '../src/prisma/prisma.module';
 import { UserModule } from '../src/user/user.module';
 import * as pactum from 'pactum';
-import { AuthDto } from 'src/auth/dto';
+import { RegisterAuthDto } from 'src/auth/dto';
 import { EditUserDto } from 'src/user/dto';
 import { CreateBookmarkDto } from 'src/bookmark/dto';
 
@@ -47,7 +47,7 @@ describe('App e2e', () => {
   });
 
   describe('Auth', () => {
-    const dto: AuthDto = {
+    const dto: RegisterAuthDto = {
       email: 'vlad@gmail.com',
       password: 'vlad123',
     };

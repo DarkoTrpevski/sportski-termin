@@ -16,7 +16,7 @@ import { EditEventDateDto } from './dto/edit-event-date.dto';
 import { EventService } from './event.service';
 
 @UseGuards(JwtGuard)
-@Controller('event')
+@Controller('events')
 export class EventController {
   constructor(private readonly eventService: EventService) {}
 
