@@ -18,21 +18,10 @@ export class AuthService {
     //Generate password hash
     const hash = await argon.hash(dto.password);
     try {
-      // NI TREBA COMPANY RESOURCE (SERVICE/MODULE/CONTROLLER)(OVA KJE BIDE SKRIENO POD ADMIN ROLE GUARD)
-
-      // NI TREBA COMPANY RESOURCE (SERVICE/MODULE/CONTROLLER)(OVA KJE BIDE SKRIENO POD ADMIN ROLE GUARD)
-
-      // NI TREBA COMPANY RESOURCE (SERVICE/MODULE/CONTROLLER)(OVA KJE BIDE SKRIENO POD ADMIN ROLE GUARD)
-
-      // NI TREBA COMPANY RESOURCE (SERVICE/MODULE/CONTROLLER)(OVA KJE BIDE SKRIENO POD ADMIN ROLE GUARD)
-
-      // NI TREBA COMPANY RESOURCE (SERVICE/MODULE/CONTROLLER)(OVA KJE BIDE SKRIENO POD ADMIN ROLE GUARD)
-
-      // NI TREBA COMPANY RESOURCE (SERVICE/MODULE/CONTROLLER)(OVA KJE BIDE SKRIENO POD ADMIN ROLE GUARD)
-
       //Save user in the db
       const user = await this.prismaService.user.create({
         data: {
+          companyId: dto.companyId,
           email: dto.email,
           hashPassword: hash,
         },

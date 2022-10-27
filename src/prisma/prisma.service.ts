@@ -18,8 +18,9 @@ export class PrismaService extends PrismaClient {
   cleanDB() {
     // PrismaService using the transaction will call the methods bellow in order.
     return this.$transaction([
-      this.bookmark.deleteMany(),
+      this.event.deleteMany(),
       this.user.deleteMany(),
+      this.company.deleteMany(),
     ]);
   }
 }
