@@ -5,15 +5,22 @@ import { JwtGuard } from 'src/auth/guards';
 import { EditUserDto } from './dto';
 import { UserService } from './user.service';
 
-@UseGuards(JwtGuard)
 @Controller('users')
 export class UserController {
   constructor(private readonly userService: UserService) {}
+
+  @UseGuards(JwtGuard)
   @Get('me')
   async findOne(@CurrentUser() user: User) {
     return user;
   }
 
+  @Get()
+  async findAll() {
+    return this.userService.findAll();
+  }
+
+  @UseGuards(JwtGuard)
   @Patch()
   editUser(
     @CurrentUser('id') userId: number,

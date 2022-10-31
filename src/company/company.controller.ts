@@ -9,6 +9,7 @@ import {
   Post,
   UseGuards,
 } from '@nestjs/common';
+import { CurrentUser } from 'src/auth/decorator';
 import { JwtGuard } from 'src/auth/guards';
 import { CompanyService } from './company.service';
 import { CreateCompanyDto } from './dto/create-company.dto';
@@ -18,9 +19,13 @@ import { EditCompanyDto } from './dto/edit-company.dto';
 export class CompanyController {
   constructor(private readonly companyService: CompanyService) {}
 
+  @UseGuards(JwtGuard)
   @Post()
-  createCompanies(@Body() createCompanyDto: CreateCompanyDto) {
-    return this.companyService.createCompany(createCompanyDto);
+  createCompanies(
+    @CurrentUser('id') adminUserId: number,
+    @Body() createCompanyDto: CreateCompanyDto,
+  ) {
+    return this.companyService.createCompany(adminUserId, createCompanyDto);
   }
 
   @UseGuards(JwtGuard)

@@ -54,13 +54,17 @@ model Event {
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-  dateHeldAt DateTime @default(now())
+  currentdateHeldAt DateTime
+  previousDateHeldAt DateTime
+
+  isRecurring Boolean @default(true)
 
   title String
   description String?
 
   numberOfGuests Int @default(0)
-  numberOfConfirmedGuests Int @default(0)
+  // Array of user IDs subscribed to this event
+  subscribedGuests Int[] @default([])
 
   userId Int
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)

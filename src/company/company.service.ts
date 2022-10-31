@@ -1,12 +1,28 @@
-import { ForbiddenException, Injectable } from '@nestjs/common';
+import {
+  ForbiddenException,
+  Injectable,
+  NotFoundException,
+  UnauthorizedException,
+} from '@nestjs/common';
+import { UserRole } from '@prisma/client';
 import { PrismaService } from 'src/prisma/prisma.service';
+import { UserService } from 'src/user/user.service';
 import { CreateCompanyDto } from './dto/create-company.dto';
 import { EditCompanyDto } from './dto/edit-company.dto';
 
 @Injectable()
 export class CompanyService {
-  constructor(private readonly prismaService: PrismaService) {}
-  async createCompany(dto: CreateCompanyDto) {
+  constructor(
+    private readonly prismaService: PrismaService,
+    private readonly userService: UserService,
+  ) {}
+  async createCompany(adminUserId: number, dto: CreateCompanyDto) {
+    const user = await this.userService.findUser(adminUserId);
+
+    if (!user) throw new NotFoundException('User not found');
+
+    if (user.userRole !== UserRole.ADMIN)
+      throw new UnauthorizedException('User not authorized for this action');
     return this.prismaService.company.create({
       data: {
         ...dto,
