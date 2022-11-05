@@ -1,4 +1,6 @@
 import {
+  IsArray,
+  IsBoolean,
   IsISO8601,
   IsNotEmpty,
   IsNumber,
@@ -15,19 +17,23 @@ export class CreateEventDto {
   @IsNotEmpty()
   companyId: number;
 
+  @IsBoolean()
+  @IsNotEmpty()
+  isRecurring: boolean;
+
   @IsString()
   @IsOptional()
   description?: string;
 
   @IsNumber()
   @IsOptional()
-  numberOfGuests: number;
+  numberOfGuests?: number;
 
-  @IsNumber()
+  @IsArray()
   @IsOptional()
-  numberOfConfirmedGuests: number;
+  subscribedGuests?: string[];
 
   @IsNotEmpty()
   @IsISO8601()
-  dateHeldAt: Date;
+  currentdateHeldAt: Date;
 }

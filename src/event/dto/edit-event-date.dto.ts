@@ -1,7 +1,7 @@
-import { IsDate, IsNotEmpty } from 'class-validator';
+import { IsISO8601, IsNotEmpty } from 'class-validator';
 
 export class EditEventDateDto {
   @IsNotEmpty()
-  @IsDate()
-  dateHeldAt: Date;
+  @IsISO8601()
+  currentdateHeldAt: Date;
 }

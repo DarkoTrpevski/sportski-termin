@@ -10,6 +10,13 @@ export class EventService {
     return this.prismaService.event.create({
       data: {
         userId,
+        isRecurring: false,
+        title: '123',
+        description: '123',
+        currentdateHeldAt: Date.now().toString(),
+        previousDateHeldAt: Date.now().toString(),
+        subscribedGuests: ['1'],
+        companyId: 1,
         ...dto,
       },
     });
